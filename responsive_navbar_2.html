@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="responsive_navbar_2.css" />
+    <title>JavaScript - CSS Responsive Dropdown Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container pt-4">
+        <div class="menu-open"><span class="open"></span></div>
+        <div class="ozmenu mt-4">
+            <div class="menu-close"><span class="close"></span></div>
+
+            <div class="header">
+                <div class="header_wrp">
+                    <h1 class="mobile_resp">logo</h1>
+                    <ul class="ozmenu-nav">
+                        <li class="item"><a href="#">Home</a></li>
+                        <li class="item"><a href="#">About Us</a></li>
+                        <li class="item dropdownitem">
+                            <a href="#" class="nav-dropdown">Services</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li class="item"><a href="#">Software</a></li>
+                                    <li class="item"><a href="#">Server Maintenance</a></li>
+                                    <li class="item dropdownitem">
+                                        <a href="#" class="nav-dropdown">Web Hosting</a>
+                                        <div class="dropdown">
+                                            <ul>
+                                                <li class="item"><a href="#">Linux Hosting</a></li>
+                                                <li class="item"><a href="#">Windows Hosting</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="item"><a href="#">Graphic Design</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="item dropdownitem">
+                            <a href="#" class="nav-dropdown">Web Design</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li class="item"><a href="#">Corporate Web Design</a></li>
+                                    <li class="item dropdownitem">
+                                        <a href="#" class="nav-dropdown">E-Commerce</a>
+                                        <div class="dropdown">
+                                            <ul>
+                                                <li class="item"><a href="#">Ready E-Commerce</a></li>
+                                                <li class="item"><a href="#">Custom E-Commerce</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="item dropdownitem">
+                                        <a href="#" class="nav-dropdown">Personal Web Design</a>
+                                        <div class="dropdown">
+                                            <ul>
+                                                <li class="item"><a href="#">Blog Site</a></li>
+                                                <li class="item"><a href="#">Portfolio Site</a></li>
+                                                <li class="item"><a href="#">Custom Personal Site</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="item"><a href="#">Custom Web Design</a></li>
+                                    <li class="item"><a href="#">Onepage Web Design</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="item dropdownitem">
+                            <a href="#" class="nav-dropdown">Help</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li class="item"><a href="#">Mail Settings</a></li>
+                                    <li class="item"><a href="#">Hosting Selection</a></li>
+                                    <li class="item"><a href="#">Admin Panel</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="item"><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        const openMenu = document.querySelector(".menu-open");
+        const closeMenu = document.querySelector(".menu-close");
+        const menuDiv = document.querySelector(".ozmenu");
+        const menu = document.querySelector(".ozmenu-nav");
+        const dropDowns = menu.getElementsByClassName("nav-dropdown");
+        const dropDownsChild = menu.querySelectorAll('.dropdown .nav-dropdown');
+
+        openMenu.addEventListener("click", menuToggle);
+        closeMenu.addEventListener("click", menuToggle);
+
+        document.body.insertAdjacentHTML("beforeend", "<div id='menu-overlay'></div>");
+        document.querySelector("#menu-overlay").addEventListener("click", menuToggle);
+
+        function menuToggle() {
+            menuDiv.classList.toggle("active");
+            document.body.classList.toggle("hide-scrolling");
+            document.body.classList.toggle("mobile-menu-active");
+            document.getElementById("menu-overlay").classList.toggle("show");
+        }
+
+        for (var i = 0; i < dropDownsChild.length; i++) {
+            dropDownsChild[i].classList.add('child');
+            dropDownsChild[i].addEventListener("click", function () {
+                this.classList.toggle('opened');
+            });
+        }
+        for (var i = 0; i < dropDowns.length; i++) {
+            if (!dropDowns[i].classList.contains("child")) {
+                dropDowns[i].classList.add('parent');
+                dropDowns[i].addEventListener("click", function () {
+                    this.classList.toggle('opened');
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="megamenu2.css">
+</head>
+
+<body>
+    <div class="menu-container">
+        <div class="menu">
+            <a href="#" class="logo">Logo</a>
+            <ul class="clearfix">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a>
+                    <ul>
+                        <li><a href="#">School</a>
+                            <ul>
+                                <li><a href="#">Lidership</a></li>
+                                <li><a href="#">History</a></li>
+                                <li><a href="#">Locations</a></li>
+                                <li><a href="#">Careers</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Study</a>
+                            <ul>
+                                <li><a href="#">Undergraduate</a></li>
+                                <li><a href="#">Masters</a></li>
+                                <li><a href="#">International</a></li>
+                                <li><a href="#">Online</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Research</a>
+                            <ul>
+                                <li><a href="#">Undergraduate research</a></li>
+                                <li><a href="#">Masters research</a></li>
+                                <li><a href="#">Funding</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Something</a>
+                            <ul>
+                                <li><img
+                                        src="https://images.unsplash.com/photo-1483232539664-d89822fb5d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGhvdG8lMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww&w=1000&q=80">
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#">News</a>
+                    <ul>
+                        <li><a href="#">Today</a></li>
+                        <li><a href="#">Calendar</a></li>
+                        <li><a href="#">Sport</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a>
+                    <ul>
+                        <li><a href="#">School</a>
+                            <ul>
+                                <li><a href="#">Lidership</a></li>
+                                <li><a href="#">History</a></li>
+                                <li><a href="#">Locations</a></li>
+                                <li><a href="#">Careers</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Study</a>
+                            <ul>
+                                <li><a href="#">Undergraduate</a></li>
+                                <li><a href="#">Masters</a></li>
+                                <li><a href="#">International</a></li>
+                                <li><a href="#">Online</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Study</a>
+                            <ul>
+                                <li><a href="#">Undergraduate</a></li>
+                                <li><a href="#">Masters</a></li>
+                                <li><a href="#">International</a></li>
+                                <li><a href="#">Online</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Empty sub</a>
+                            <ul>
+                                <li><img
+                                        src="https://images.unsplash.com/photo-1483232539664-d89822fb5d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGhvdG8lMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww&w=1000&q=80">
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            "use strict";
+            $('.menu > ul > li:has( > ul)').addClass('menu-dropdown-icon');
+            $('.menu > ul > li > ul:not(:has(ul))').addClass('normal-sub');
+            $(".menu > ul").before("<a href=\"#\" class=\"menu-mobile\">&nbsp;</a>");
+            $(".menu > ul > li").hover(function (e) {
+                if ($(window).width() > 943) {
+                    $(this).children("ul").stop(true, false).fadeToggle(150);
+                    e.preventDefault();
+                }
+            });
+            $(".menu > ul > li").click(function () {
+                if ($(window).width() <= 943) {
+                    $(this).children("ul").fadeToggle(150);
+                }
+            });
+            $(".menu-mobile").click(function (e) {
+                $(".menu > ul").toggleClass('show-on-mobile');
+                e.preventDefault();
+            });
+        });
+        $(window).resize(function () {
+            $(".menu > ul > li").children("ul").hide();
+            $(".menu > ul").removeClass('show-on-mobile');
+        });
+    </script>
+</body>
+
+</html>
